@@ -13,9 +13,9 @@ formElement.addEventListener("submit", (event) => {
   document.cookie = `fontSize=${fontSized}; path=/; max-age=31536000`;  // 1-year expiration
   document.cookie = `fontColor=${fontColored}; path=/; max-age=31536000`;
 
-  // Apply the selected font size and color directly to the body
-  document.body.style.fontSize = `${fontSized}px`;
-  document.body.style.color = fontColored;
+  // Apply the selected font size and color using CSS variables
+  document.documentElement.style.setProperty('--fontsize', `${fontSized}px`);
+  document.documentElement.style.setProperty('--fontcolor', fontColored);
 });
 
 // Load saved font size and color from cookies when the page loads
@@ -28,13 +28,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (fontSizeCookie) {
     const savedFontSize = fontSizeCookie.split("=")[1];
-    document.body.style.fontSize = `${savedFontSize}px`; // Apply saved font size to body
+    document.documentElement.style.setProperty('--fontsize', `${savedFontSize}px`); // Apply saved font size
     fontSize.value = savedFontSize; // Update font size input field
   }
 
   if (fontColorCookie) {
     const savedFontColor = fontColorCookie.split("=")[1];
-    document.body.style.color = savedFontColor; // Apply saved font color to body
+    document.documentElement.style.setProperty('--fontcolor', savedFontColor); // Apply saved font color
     fontColor.value = savedFontColor; // Update font color input field
   }
 });
