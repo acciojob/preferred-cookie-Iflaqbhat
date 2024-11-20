@@ -37,6 +37,11 @@ document.querySelector("form").onsubmit = (e) => {
   // Apply preferences
   document.documentElement.style.setProperty("--fontsize", fontSize);
   document.documentElement.style.setProperty("--fontcolor", fontColor);
+  
+  // Delay page reload to ensure styles are applied
+  setTimeout(() => {
+    location.reload(); // Reload the page to apply the saved preferences
+  }, 100); // Delay reload by 100ms
 };
 
 
